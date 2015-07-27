@@ -1,0 +1,70 @@
+Ball.prototype.gameLoop2 = function() {
+    if (boundingCircle.x < walls1.wall_top.x + walls1.wall_top.width &&
+        boundingCircle.x + boundingCircle.width > walls1.wall_top.x &&
+        boundingCircle.y < walls1.wall_top.y + walls1.wall_top.height &&
+        boundingCircle.y + boundingCircle.height > walls1.wall_top.y) {
+
+        //this.direction = new Vector (50,180);
+
+        //this.speed = 1.5;
+
+        this.velocity2.y = this.velocity2.y * -1;
+
+        window.setTimeout(ball1.gameLoop3, 20);
+        ball1.drawScreen3();
+    } else if (boundingCircle.x < walls1.wall_left.x + walls1.wall_left.width &&
+        boundingCircle.x + boundingCircle.width > walls1.wall_left.x &&
+        boundingCircle.y < walls1.wall_left.y + walls1.wall_left.height &&
+        boundingCircle.y + boundingCircle.height > walls1.wall_left.y) {
+        this.velocity2.x = this.velocity2.x * -1;
+        //this.velocity = new Vector(this.direction.x*this.speed*-1, this.direction.y*this.speed);
+
+        window.setTimeout(ball1.gameLoop3, 20);
+    } else if (boundingCircle.x < walls1.wall_right.x + walls1.wall_right.width &&
+        boundingCircle.x + boundingCircle.width > walls1.wall_right.x &&
+        boundingCircle.y < walls1.wall_right.y + walls1.wall_right.height &&
+        boundingCircle.y + boundingCircle.height > walls1.wall_right.y) {
+        this.velocity2.x = this.velocity2.x * -1;
+        //this.velocity = new Vector(this.direction.x*this.speed*-1, this.direction.y*this.speed);
+
+        window.setTimeout(ball1.gameLoop3, 20);
+
+
+    } else {
+        window.setTimeout(ball1.gameLoop2, 20);
+        ball1.drawScreen2();
+    }
+};
+
+Ball.prototype.gameLoop3 = function() {
+    var x = boundingCircle.x < paddle1.x + paddle1.width &&
+        boundingCircle.x + boundingCircle.width > paddle1.x &&
+        boundingCircle.y < paddle1.y + paddle1.height &&
+        boundingCircle.y + boundingCircle.height > paddle1.y;
+    if (boundingCircle.x < paddle1.x + paddle1.width &&
+        boundingCircle.x + boundingCircle.width > paddle1.x &&
+        boundingCircle.y < paddle1.y + paddle1.height &&
+        boundingCircle.y + boundingCircle.height > paddle1.y) {
+
+        window.setTimeout(ball1.gameLoop, 20);
+    }
+
+    if (boundingCircle.x < walls1.wall_top.x + walls1.wall_top.width &&
+        boundingCircle.x + boundingCircle.width > walls1.wall_top.x &&
+        boundingCircle.y < walls1.wall_top.y + walls1.wall_top.height &&
+        boundingCircle.y + boundingCircle.height > walls1.wall_top.y) {
+
+        //this.direction = new Vector (50,180);
+
+        //this.speed = 1.5;
+
+        this.velocity2.y = this.velocity2.y * -1;
+
+        window.setTimeout(ball1.gameLoop3, 20);
+        ball1.drawScreen3();
+    } else {
+
+        window.setTimeout(ball1.gameLoop3, 20);
+        ball1.drawScreen3();
+    }
+};

@@ -72,17 +72,6 @@ Vector.prototype.scale = function(scaler) {
     return new Vector(newX, newY);
 };
 
-Vector.prototype.scale_arguement = function(scaler) {
-    var magnitude = this.getMagnitude();
-    var scaleX = this.x / magnitude;
-    var scaleY = this.y / magnitude;
-
-    var newX = scaleX * scaler;
-    var newY = scaleY * scaler;
-
-    return new Vector(newX, newY);
-};
-
 Vector.prototype.unitVector = function() {
     var unitScale = this.getMagnitude();
     var unitVectorX = this.x / unitScale;
@@ -107,11 +96,11 @@ Vector.prototype.getDotProduct = function(vector2) {
     return (dotProduct);
 };
 
-Vector.prototype.normal = function() {
+Vector.prototype.planeNormal = function() {
 
     scaledVector = this.scale(1);
 
-    var normalX = scaledVector.y * -1;
+    var normalX = scaledVector.y;
     var normalY = scaledVector.x;
     return new Vector(normalX, normalY);
 };
@@ -129,15 +118,33 @@ Vector.prototype.getTheta = function(vector2) {
 
 
 
-Vector.prototype.projection = function(incomingvelocity, planeNormal) {
-    //vector2 is the direction of the incoming ball
+Vector.prototype.project = function(plane) {
+    //plane is the surface the ball bounces off
+	//Vector is the incoming velocity of the ball
+	var planeNormal = plane.planeNormal();
+	
 
+	this.scale(1);
+	
+	var dotProduct = this.getDotProduct(planeNormal);
+	
+	var projectionLength = dotProduct;
+	
+	return projectionLength;
+};
 
-
-
-
-
-
+Vector.prototype.reflect = function(projectionLength,planeNormal,ballPosition){
+	//position of ball at beginning of frame - projection = vector between the projection and incoming velocity
+	//which vector should be instance of Vector called? 
+	
+	var projectionTop = game1.ball.center.add(planeNormal.scale(projectionLength));
+	
+	
+	var vector_between = ballPosition.subtract(projectionTop);
+	
+	var reflectionPoint = projectionTop.subtract(vector_between);	
+	
+	return new Vector(reflectionPoint.x, reflectionPoint.y);
 };
 
 

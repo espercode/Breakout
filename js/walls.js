@@ -1,35 +1,13 @@
-//fix wall parameters
-
-var Walls = function(wall_left, wall_top, wall_right) {
-    this.wall_left = new boundingBox(0, 0, 10, 300);
-    this.wall_top = new boundingBox(10, 0, 580, 10);
-    this.wall_right = new boundingBox(580, 0, 10, 300);
+var Walls = function() {
+	var wallWidth = Math.ceil(canvas_width*(10/600));
+    this.left = new boundingBox(0, 0, wallWidth, canvas_height);
+	this.top = new boundingBox(0, 0, canvas_width, Math.ceil(canvas_height*(10/300)));
+    this.right = new boundingBox(canvas_width - wallWidth, 0, wallWidth, canvas_height);
 };
 
 Walls.prototype.drawWalls = function(walls) {
-    this.wall_left.drawBox(this.wall_left.x, this.wall_left.y, this.wall_left.width, this.wall_left.height);
-    this.wall_top.drawBox(this.wall_top.x, this.wall_top.y, this.wall_top.width, this.wall_top.height);
-    this.wall_right.drawBox(this.wall_right.x, this.wall_right.y, this.wall_right.width, this.wall_right.height);
-
-    // var path = new Path2D();
-    // path.moveTo(50,25); 
-    // path.quadraticCurveTo(25,25,25,62.5);
-    // path.quadraticCurveTo(25,100,50,100);
-
-    // path.quadraticCurveTo(50,120,30,125);
-    
-    // path.quadraticCurveTo(60,120,65,100);
-    // path.lineTo(100, 100);
-    // path.quadraticCurveTo(125,100,125,62.5);
-    // path.quadraticCurveTo(125,25,100,25);
-    // path.lineTo(50,25);
-    // ctx.stroke(path);
-
+    this.left.drawBox(this.left.x, this.left.y, this.left.width, this.left.height);
+    this.top.drawBox(this.top.x, this.top.y, this.top.width, this.top.height);
+    this.right.drawBox(this.right.x, this.right.y, this.right.width, this.right.height);
 }
 
-function test2(event) {
-    if (event.keyCode == 'W'.charCodeAt()) {
-        walls1 = new Walls(this.wall_left, this.wall_top, this.wall_right);
-        walls1.drawWalls(walls1);
-    }
-};
