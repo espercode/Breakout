@@ -5,7 +5,7 @@
 //make game.js file and run everything there
 
 var Ball = function(radius, startAngle, endAngle, counterclockwise) {
-    this.center = new Vector(200, 250);
+    this.center = new Vector(canvas_width / 2, canvas_height / 2);
     this.radius = radius;
     this.startAngle = startAngle;
     this.endAngle = endAngle;
@@ -14,7 +14,7 @@ var Ball = function(radius, startAngle, endAngle, counterclockwise) {
 	this.speed = 1;
 	this.direction = new Vector(0, 40);
     this.velocity = new Vector(this.direction.x*this.speed, this.direction.y*this.speed);
-	this.boundingCircle = new boundingBox(this.center.x - this.radius, this.center.y - this.radius, this.radius * 2, this.radius * 2);
+	this.boundingCircle = new boundingBox(this.center.x - this.radius, this.center.y - this.radius, this.radius * 2, this.radius * 2, false);
 };
 
 Ball.prototype.drawBall_start = function(ball1) {

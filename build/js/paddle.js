@@ -3,12 +3,12 @@ var x = null;
 var y = null;
 
 var Paddle = function(x, y, width, height) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-	this.middle = (this.width/2) + this.x;
+    boundingBox.call(this, x, y, width, height);
+    this.middle = (this.width / 2) + this.x;
 };
+
+Paddle.prototype = new boundingBox();
+
 
 Paddle.prototype.drawPaddle_start = function() {
     var x = this.x;
@@ -18,25 +18,22 @@ Paddle.prototype.drawPaddle_start = function() {
     ctx.fillRect(x, y, width, height);
 };
 
-Paddle.prototype.movingPaddle = function() {
-	if(x > game1.walls.left.width && x < canvas.width - game1.paddle.width - game1.walls.right.width) {
-    event.preventDefault();
-    event.stopPropagation();
-
+Paddle.prototype.movingPaddle = function(e) {
+    var x = e.offsetX;
     startX = this.x;
 
-    var dx = x - startX;
+    if (x < game1.walls.left.width + game1.paddle.width / 2) {
+        this.x = game1.walls.left.width;
+    } else if (x > canvas.width - game1.paddle.width / 2 - game1.walls.right.width) {
+        this.x = canvas.width - game1.walls.right.width - game1.paddle.width;
+    } else {
+        this.x = x - this.width / 2;
+    }
 
-    this.x += dx;
-	
-	game1.paddle.middle = (this.width/2) + this.x;
- 
+    game1.paddle.middle = x;
+
     //redraw the new scene with new box position
     game1.paddle.reDraw();
-
-    //reset the starting mouse position for next mouse move
-    startX = x;
-	}
 };
 
 //clears paddle drawing
@@ -48,7 +45,7 @@ Paddle.prototype.reDraw = function() {
 
     this.clear();
 
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.draw();
 
 };
 

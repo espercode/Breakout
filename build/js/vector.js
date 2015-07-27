@@ -3,11 +3,6 @@
  * Author: Judy Chern and spencer
  */
 
- var JC = JC ? JC : {};
-JC.breakout = JC.breakout ? JC.breakout :  {};
-
-(function(game) {
-
 //check for integer/null in constructor
 var scaler = null;
 
@@ -147,27 +142,3 @@ Vector.prototype.reflect = function(projectionLength,planeNormal,ballPosition){
 	return new Vector(reflectionPoint.x, reflectionPoint.y);
 };
 
-
-//Vector.prototype.getPoint = function(event){
-//	var x = event.x ;
-//var y = event.y;
-//return new Vector(x,y);
-//}
-//vector1.normal();
-
-//vector1.rotate();
-//vector1.scale();
-//vector1.getMagnitude();
-
-
-})(JC.breakout);
-
-(function(game) {
-	game.functionThatWeWantOtherPeopleToHave = function () {
-		console.log('yay');
-	};
-
-	var functionTheWeDontWantOtherPeopleToHave = function () {
-
-	}
-})(JC.breakout);

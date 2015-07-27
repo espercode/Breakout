@@ -1,8 +1,8 @@
 var Walls = function() {
-	var wallWidth = Math.ceil(canvas_width*(10/600));
-    this.left = new boundingBox(0, 0, wallWidth, canvas_height);
-	this.top = new boundingBox(0, 0, canvas_width, Math.ceil(canvas_height*(10/300)));
-    this.right = new boundingBox(canvas_width - wallWidth, 0, wallWidth, canvas_height);
+	var wallWidth = 10;
+    this.left = new boundingBox(0, 0, wallWidth, canvas_height, false);
+	this.top = new boundingBox(0, 0, canvas_width, 10, false);
+    this.right = new boundingBox(canvas_width - wallWidth, 0, wallWidth, canvas_height, false);
 };
 
 Walls.prototype.drawWalls = function(walls) {

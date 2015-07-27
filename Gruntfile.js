@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
             js: {
-                src: ['js/paddle.js', 'js/vector.js', 'js/walls.js', 'js/ball.js', 'js/box.js'],
+                src: ['js/*.js'],
                 dest: 'build/scripts.js',
             }
         },
@@ -77,4 +77,5 @@ grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-connect');
 
 grunt.registerTask('default', ['connect', 'watch']);
+grunt.registerTask('start', ['connect']);
 };
